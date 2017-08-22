@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSON Example</title>
+	<script type="text/javascript">
+	function ajax_get_json(){
+		var hr = new XMLHttpRequest();
+		hr.open("GET", "mylist.json", true);
+		hr.setRequest.Header("Content-type", "application/json", true);
+		hr.onreadystatechange = function(){
+			if(hr.readyState == 4 && hr.status == 200){
+				var data = JSON.parse(hr.responseText);
+				var results = document.getElementById("results");
+				results.innerHTML = data.user;
+			}
+		}
+		hr.send(null);
+		results.innerHTML = "requesting...";
+	}
+
+	</script>
+</head>
+<body>
+	<div id="results"></div>
+	<script type="text/javascript">ajax_get_json()</script>
+</body>
+</html>
