@@ -1,0 +1,28 @@
+[
+  {
+    "member":"Jampa Thinay",
+    "memberID":"888 8888 888",
+    "colors":{
+          "likes":["blue"],
+          "dislikes": ["red","black"]
+             }
+  },
+
+  {
+    "member":"Tenzin Thinay",
+    "memberID":"999 9990 888",
+    "colors":{
+          "likes":["white","black"],
+          "dislikes": ["red"]
+             }
+  },
+
+  {
+    "member":"Susan Newman",
+    "memberID":"777 7772 7777",
+    "colors":{
+            "likes":["burgundy","black"],
+            "dislikes":["orange","pink"]
+    }
+  }
+]

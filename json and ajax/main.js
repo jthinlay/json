@@ -1,53 +1,42 @@
 var pageCounter = 1;
-
-var animalContainer = document.getElementById('animal-info');
-
+var displayContainer = document.getElementById('animal-info');
 var btn = document.getElementById('btn');
     btn.addEventListener('click', function(){
-    	
-    	var ourRequest = new XMLHttpRequest();
-    	
-    	    ourRequest.open('GET', 'https://learnwebcode.github.io/json-example/animals-'+ pageCounter +'.json', true);
-    	    //ourRequest.onload = function(){
-    	    
-    	    ourRequest.onreadystatechange=function(){
-    	    if(this.readyState == 4 && this.status ==200){
-    	    var ourData = JSON.parse(ourRequest.responseText);
-    	    
-    	    renderHTML(ourData);
-    	    }
-    	}
-    	ourRequest.send();
-    	pageCounter++;
-    	if(pageCounter > 3){
-    		btn.classList.add('hide-me');
-    	}
-    });
+        var ourRequest = new XMLHttpRequest();
+            ourRequest.open("GET", "jsonPractice.json", true);
+            ourRequest.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200)
+                    var ourData = JSON.parse(ourRequest.responseText);
+                    renderHTML(ourData);
+            }
+            ourRequest.send();
+            pageCounter++;
+            if(pageCounter>1){
+                btn.classList.add('hide-me');
+            }
+    })
 function renderHTML(data){
-	text = " ";
-	for(i=0; i<data.length; i++){
-		text += '<p>'+data[i].name + ' is a '+ data[i].species + ' and like to eat'
+    var text = "";
+    for(i=0; i<data.length; i++){
+        text += '<br/><br/><b>Member\'s Name is:</b> <i>' + data[i].member + '<br/></i><b>Member ID is: </b><i> '
+        + data[i].memberID + "</i><br/>"
+        + "<b>Likes color: </b>";
+           for(ii=0; ii<data[i].colors.likes.length; ii++){
+             if(ii==0){
+                  text +="<i>" + data[i].colors.likes[ii]+ "</i> " 
+            }else{
+                 text += "<i> and " + data[i].colors.likes[ii]+ "</i> "
+                 }
+            }
+         text += "<br/><b>Dislikes color: </b>";
+           for(ii=0; ii<data[i].colors.dislikes.length; ii++){
+            if(ii==0){
+                text += "<i>"+ data[i].colors.dislikes[ii] +"</i>";
+            }else{
+                text += "<i> and "+ data[i].colors.dislikes[ii] +"</i>";
+            }
+           } 
 
-		for(ii=0; ii<data[i].foods.likes.length; ii++){
-			if(ii==0){
-				text += data[i].foods.likes[ii];
-			}else{
-				text += ' and ' + data[i].foods.likes[ii];
-			}
-		}
-		text += ' and dislikes to eat '
-		for(ii=0; ii<data[i].foods.dislikes.length; ii++){
-			if(ii==0){
-				text += data[i].foods.dislikes[ii];
-			}else{
-				text += ' and ' + data[i].foods.dislikes[ii];
-			}
-		}
-		text += '. </p>';
-	}
-animalContainer.insertAdjacentHTML('beforeend', text);
+    }
+    displayContainer.insertAdjacentHTML("beforeend", text);
 }
-// classlist.add('');
-// insertAdjacentHTML('beforeend', text);
-// addEventListener
-// onreadystatechange
