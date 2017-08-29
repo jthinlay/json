@@ -36,7 +36,6 @@ function renderHTML(data){
                 text += "<i> and "+ data[i].colors.dislikes[ii] +"</i>";
             }
            } 
-
     }
     displayContainer.insertAdjacentHTML("beforeend", text);
 }
